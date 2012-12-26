@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearBytes.SohoPayDay.Mvc", "BearBytes.SohoPayDay.Mvc\BearBytes.SohoPayDay.Mvc.csproj", "{AE074E56-4575-44B8-8F06-39AB0EF8067B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearBytes.SohoPayDay.Dto", "BearBytes.SohoPayDay.Dto\BearBytes.SohoPayDay.Dto.csproj", "{47EF2C2C-7080-482D-847C-5DB7521BA06B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearBytes.SohoPayDay.Business", "BearBytes.SohoPayDay.Business\BearBytes.SohoPayDay.Business.csproj", "{685F4758-184F-4652-B733-279EB29F7A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearBytes.SohoPayDay.DataAccess", "BearBytes.SohoPayDay.DataAccess\BearBytes.SohoPayDay.DataAccess.csproj", "{FFB87E79-964A-4E3B-A85E-8502F7BAC82C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearBytes.SohoPayDay.Common", "BearBytes.SohoPayDay.Common\BearBytes.SohoPayDay.Common.csproj", "{14715341-42A7-42C8-8379-16A61A558F7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearBytes.SohoPayDay.Domain", "BearBytes.SohoPayDay.Domain\BearBytes.SohoPayDay.Domain.csproj", "{E5960133-7248-4589-82D8-13C1AB1CB6F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE074E56-4575-44B8-8F06-39AB0EF8067B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE074E56-4575-44B8-8F06-39AB0EF8067B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE074E56-4575-44B8-8F06-39AB0EF8067B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE074E56-4575-44B8-8F06-39AB0EF8067B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47EF2C2C-7080-482D-847C-5DB7521BA06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47EF2C2C-7080-482D-847C-5DB7521BA06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47EF2C2C-7080-482D-847C-5DB7521BA06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47EF2C2C-7080-482D-847C-5DB7521BA06B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{685F4758-184F-4652-B733-279EB29F7A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{685F4758-184F-4652-B733-279EB29F7A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{685F4758-184F-4652-B733-279EB29F7A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{685F4758-184F-4652-B733-279EB29F7A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB87E79-964A-4E3B-A85E-8502F7BAC82C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB87E79-964A-4E3B-A85E-8502F7BAC82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB87E79-964A-4E3B-A85E-8502F7BAC82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB87E79-964A-4E3B-A85E-8502F7BAC82C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14715341-42A7-42C8-8379-16A61A558F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14715341-42A7-42C8-8379-16A61A558F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14715341-42A7-42C8-8379-16A61A558F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14715341-42A7-42C8-8379-16A61A558F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5960133-7248-4589-82D8-13C1AB1CB6F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5960133-7248-4589-82D8-13C1AB1CB6F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5960133-7248-4589-82D8-13C1AB1CB6F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5960133-7248-4589-82D8-13C1AB1CB6F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

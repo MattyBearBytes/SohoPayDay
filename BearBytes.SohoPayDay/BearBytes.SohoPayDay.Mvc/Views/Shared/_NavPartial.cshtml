@@ -14,8 +14,8 @@
         </li>  
         
         <li>@Html.ActionLink("Work Log", "List", "WorkLog")</li>
-        <li>@Html.ActionLink("Quotes", "List", "Quote")</li>
-        <li>@Html.ActionLink("Invoices", "List", "Invoice")</li>
+        <li>@Html.ActionLink("Quotes", "List", "Invoice", new {Id = 1}, new {})</li>
+        <li>@Html.ActionLink("Invoices", "List", "Invoice", new {Id = 2}, new {})</li>
         <li>@Html.ActionLink("Expenses", "List", "Expense")</li>
         
         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BearBytes.SohoPayDay.Common;
 using BearBytes.SohoPayDay.Common.Helpers;
 using BearBytes.SohoPayDay.DataAccess.Interfaces;
 using BearBytes.SohoPayDay.Domain;
@@ -98,7 +99,7 @@ namespace BearBytes.SohoPayDay.DataAccess
         public void InsertCategory(ProductCategoryDomain newItem)
         {
             var sql = Sql.Builder.Append(" INSERT INTO ProductCategory (Name, TypeId) ")
-                .Append(" VALUES (@0, @1) ", newItem.Name, ProductHelper.ProductTypeToInt(newItem.ProductType));
+                .Append(" VALUES (@0, @1) ", newItem.Name, EnumHelper.EnumTextToInt(newItem.ProductType, typeof(Enums.ProductType)));
 
             DataContext.Execute(sql);
         }
@@ -119,7 +120,7 @@ namespace BearBytes.SohoPayDay.DataAccess
         public void UpdateCategory(ProductCategoryDomain editedItem)
         {
             var sql = Sql.Builder.Append("UPDATE ProductCategory ")
-                     .Append(" SET Name = @0, TypeId = @1 ", editedItem.Name, ProductHelper.ProductTypeToInt(editedItem.ProductType))
+                     .Append(" SET Name = @0, TypeId = @1 ", editedItem.Name, EnumHelper.EnumTextToInt(editedItem.ProductType, typeof(Enums.ProductType)))
                      .Append(" WHERE ID = @0 ", editedItem.Id);
 
             DataContext.Execute(sql);

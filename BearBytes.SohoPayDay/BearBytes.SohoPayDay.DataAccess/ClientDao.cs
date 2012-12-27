@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BearBytes.SohoPayDay.Common;
 using BearBytes.SohoPayDay.Common.Helpers;
 using BearBytes.SohoPayDay.DataAccess.Interfaces;
 using BearBytes.SohoPayDay.Domain;
@@ -70,7 +71,7 @@ namespace BearBytes.SohoPayDay.DataAccess
         public void Insert(ClientDomain newItem)
         {
             var sql = Sql.Builder.Append(" INSERT INTO Client (TypeId, FirstName, Surname, BusinessName) ")
-                .Append(" VALUES (@0, @1, @2, @3) ", ClientHelper.ClientTypeToInt(newItem.ClientType), newItem.FirstName, 
+                .Append(" VALUES (@0, @1, @2, @3) ", EnumHelper.EnumTextToInt(newItem.ClientType, typeof(Enums.ClientType)), newItem.FirstName, 
                         newItem.Surname, newItem.BusinessName);
 
             DataContext.Execute(sql);
@@ -83,8 +84,8 @@ namespace BearBytes.SohoPayDay.DataAccess
         public void Update(ClientDomain editedItem)
         {
             var sql = Sql.Builder.Append("UPDATE Client ")
-                     .Append(" SET TypeId = @0, FirstName = @1, Surname = @2, BusinessName = @3 ", 
-                        ClientHelper.ClientTypeToInt(editedItem.ClientType), editedItem.FirstName, 
+                     .Append(" SET TypeId = @0, FirstName = @1, Surname = @2, BusinessName = @3 ",
+                        EnumHelper.EnumTextToInt(editedItem.ClientType, typeof(Enums.ClientType)), editedItem.FirstName, 
                         editedItem.Surname, editedItem.BusinessName)
                      .Append(" WHERE ID = @0 ", editedItem.Id);
 

@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BaseDao.cs" />
     <Compile Include="ClientDao.cs" />
+    <Compile Include="InvoiceDao.cs" />
+    <Compile Include="Interfaces\IInvoiceDao.cs" />
     <Compile Include="Interfaces\IClientDao.cs" />
     <Compile Include="Interfaces\IBaseDao.cs" />
     <Compile Include="Interfaces\IProductDao.cs" />

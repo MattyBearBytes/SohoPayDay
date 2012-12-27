@@ -28,5 +28,14 @@ namespace BearBytes.SohoPayDay.Common
             Business = 2,
             Supplier = 3
         }
+
+        /// <summary>
+        /// The Type of Invoice
+        /// </summary>
+        public enum InvoiceType
+        {
+            Quote = 1,
+            Invoice = 2
+        }
     }
 }

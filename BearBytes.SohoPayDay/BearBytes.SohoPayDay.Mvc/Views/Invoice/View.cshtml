@@ -1,0 +1,33 @@
+﻿@model BearBytes.SohoPayDay.Dto.InvoiceDto
+@{
+    ViewBag.Title = String.Format("Viewing {0} #{1}", Model.InvoiceType, Model.InvoiceNumber);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row-fluid cell-unit" >
+<div class="span4">
+    <table>
+        <tr>
+            <td><b>Issue Date</b></td>
+            <td>&nbsp&nbsp</td>
+            <td>@Model.IssueDate.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td><b>Client Name</b></td>
+            <td>&nbsp&nbsp</td>
+            <td>@Model.Client.FullName</td>
+        </tr>
+    </table>
+    </div>
+</div>
+
+<div class="btn-toolbar">
+    @Html.ActionLink("Back to List", "List", "Invoice", new { Id = (int)ViewBag.InvoiceTypeFilter }, new { @class = "btn noPrint" })
+    @Html.ActionLink("Edit " + (string)Model.InvoiceType, "Edit", "Invoice", new { Id = Model.Id }, new { @class = "btn btn-warning noPrint" })
+</div>
+
+<hr/>
+
+<h4>Invoice Items</h4>
+<p>There will be a partial view that will get called that will list the Invoice Items here.</p>   

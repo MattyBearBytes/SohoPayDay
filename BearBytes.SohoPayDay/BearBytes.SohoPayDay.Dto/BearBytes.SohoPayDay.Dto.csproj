@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BaseDto.cs" />
     <Compile Include="ClientDto.cs" />
+    <Compile Include="InvoiceDto.cs" />
+    <Compile Include="InvoiceItemDto.cs" />
     <Compile Include="LookupDto.cs" />
     <Compile Include="ProductCategoryDto.cs" />
     <Compile Include="ProductDto.cs" />

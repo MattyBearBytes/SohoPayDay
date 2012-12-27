@@ -26,6 +26,13 @@ namespace BearBytes.SohoPayDay.Business.Service.Interface
         /// <returns></returns>
         IEnumerable<ClientDto> FetchMany(int clientTypeId = -1);
 
+
+        /// <summary>
+        /// Fetch many Clients that we can sell to
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<ClientDto> FetchSellableLookup();
+
         /// <summary>
         /// Fetch a list of Client Types
         /// </summary>

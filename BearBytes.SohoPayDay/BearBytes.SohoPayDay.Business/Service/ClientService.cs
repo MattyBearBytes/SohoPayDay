@@ -59,7 +59,7 @@ namespace BearBytes.SohoPayDay.Business.Service
         {
             return new ClientDto
             {
-                ClientType = ClientHelper.ClientTypeToEnum(clientTypeId).ToString()
+                ClientType = EnumHelper.ClientTypeToEnum(clientTypeId).ToString()
             };
         }
 
@@ -87,6 +87,21 @@ namespace BearBytes.SohoPayDay.Business.Service
             try
             {
                 return Mapper.Map<IEnumerable<LookupDomain>, IEnumerable<LookupDto>>(_clientDb.FetchClientTypes());
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                throw;
+            }
+        }
+
+
+        public IEnumerable<ClientDto> FetchSellableLookup()
+        {
+            try
+            {
+                return Mapper.Map<IEnumerable<ClientDomain>, IEnumerable<ClientDto>>(
+                    _clientDb.FetchMany().Where(x => x.ClientType == "Business" || x.ClientType == "Private"));
             }
             catch (Exception ex)
             {

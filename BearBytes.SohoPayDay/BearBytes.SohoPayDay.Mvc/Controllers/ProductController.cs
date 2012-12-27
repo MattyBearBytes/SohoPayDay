@@ -31,7 +31,7 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
         {
             var records = _productService.FetchMany(Id);
 
-            ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(Id);
+            ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(Id);
             
             return View(records);
         }
@@ -47,7 +47,7 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
 
             ViewBag.FormMode = "Add";
             ViewBag.ProductCategoryList = new SelectList(_productService.FetchProductCategories(Id), "Id", "Name");
-            ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(Id);
+            ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(Id);
 
             return View("Edit", newRecord);
         }
@@ -64,13 +64,13 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             {
                 _productService.Insert(newProduct);
 
-                return RedirectToAction("List", new { Id = ProductHelper.ProductTypeToInt(newProduct.ProductCategory.ProductType) });
+                return RedirectToAction("List", new { Id = EnumHelper.EnumTextToInt(newProduct.ProductCategory.ProductType, typeof(Enums.ProductType)) });
             }
             catch
             {
                 ViewBag.FormMode = "Add";
-                ViewBag.ProductCategoryList = new SelectList(_productService.FetchProductCategories(ProductHelper.ProductTypeToInt(newProduct.ProductCategory.ProductType)), "Id", "Name");
-                ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(newProduct.ProductCategory.ProductType);
+                ViewBag.ProductCategoryList = new SelectList(_productService.FetchProductCategories(EnumHelper.EnumTextToInt(newProduct.ProductCategory.ProductType, typeof(Enums.ProductType))), "Id", "Name");
+                ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(newProduct.ProductCategory.ProductType);
                 return View("Edit");
             }
         }
@@ -85,8 +85,8 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             var record = _productService.GetSingle(id);
 
             ViewBag.FormMode = "Edit";
-            ViewBag.ProductCategoryList = new SelectList(_productService.FetchProductCategories(ProductHelper.ProductTypeToInt(record.ProductCategory.ProductType)), "Id", "Name");
-            ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(record.ProductCategory.ProductType);
+            ViewBag.ProductCategoryList = new SelectList(_productService.FetchProductCategories(EnumHelper.EnumTextToInt(record.ProductCategory.ProductType, typeof(Enums.ProductType))), "Id", "Name");
+            ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(record.ProductCategory.ProductType);
             
 
             return View(record);
@@ -104,13 +104,13 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             {
                 _productService.Update(editedProduct);
 
-                return RedirectToAction("List", new { Id = ProductHelper.ProductTypeToInt(editedProduct.ProductCategory.ProductType) });
+                return RedirectToAction("List", new { Id = EnumHelper.EnumTextToInt(editedProduct.ProductCategory.ProductType, typeof(Enums.ProductType)) });
             }
             catch
             {
                 ViewBag.FormMode = "Edit";
-                ViewBag.ProductCategoryList = new SelectList(_productService.FetchProductCategories(ProductHelper.ProductTypeToInt(editedProduct.ProductCategory.ProductType)), "Id", "Name");
-                ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(editedProduct.ProductCategory.ProductType);
+                ViewBag.ProductCategoryList = new SelectList(_productService.FetchProductCategories(EnumHelper.EnumTextToInt(editedProduct.ProductCategory.ProductType, typeof(Enums.ProductType))), "Id", "Name");
+                ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(editedProduct.ProductCategory.ProductType);
                 return View();
             }
         }

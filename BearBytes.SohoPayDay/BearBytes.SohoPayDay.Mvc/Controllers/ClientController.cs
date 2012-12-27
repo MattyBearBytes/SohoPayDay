@@ -31,7 +31,7 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
         {
             var records = _clientService.FetchMany(Id);
 
-            ViewBag.ClientTypeFilter = ClientHelper.ClientTypeToEnum(Id);
+            ViewBag.ClientTypeFilter = EnumHelper.ClientTypeToEnum(Id);
             
             return View(records);
         }
@@ -47,7 +47,7 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
 
             ViewBag.FormMode = "Add";
             ViewBag.ClientTypeList = new SelectList(_clientService.FetchClientTypes(), "Id", "Value");
-            ViewBag.ClientTypeFilter = ClientHelper.ClientTypeToEnum(Id);
+            ViewBag.ClientTypeFilter = EnumHelper.ClientTypeToEnum(Id);
 
             return View("Edit", newRecord);
         }
@@ -64,13 +64,13 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             {
                 _clientService.Insert(newClient);
 
-                return RedirectToAction("List", new { Id = ClientHelper.ClientTypeToInt(newClient.ClientType) });
+                return RedirectToAction("List", new { Id = EnumHelper.EnumTextToInt(newClient.ClientType, typeof(Enums.ClientType)) });
             }
             catch
             {
                 ViewBag.FormMode = "Add";
                 ViewBag.ClientTypeList = new SelectList(_clientService.FetchClientTypes(), "Id", "Name");
-                ViewBag.ClientTypeFilter = ClientHelper.ClientTypeToEnum(newClient.ClientType);
+                ViewBag.ClientTypeFilter = EnumHelper.ClientTypeToEnum(newClient.ClientType);
                 return View("Edit");
             }
         }
@@ -85,7 +85,7 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             var record = _clientService.GetSingle(id);
 
             ViewBag.FormMode = "Edit";
-            ViewBag.ClientTypeFilter = ClientHelper.ClientTypeToEnum(record.ClientType);
+            ViewBag.ClientTypeFilter = EnumHelper.ClientTypeToEnum(record.ClientType);
 
             return View(record);
         }
@@ -102,12 +102,12 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             {
                 _clientService.Update(editedClient);
 
-                return RedirectToAction("List", new { Id = ClientHelper.ClientTypeToInt(editedClient.ClientType) });
+                return RedirectToAction("List", new { Id = EnumHelper.EnumTextToInt(editedClient.ClientType, typeof(Enums.ClientType)) });
             }
             catch
             {
                 ViewBag.FormMode = "Edit";
-                ViewBag.ClientTypeFilter = ClientHelper.ClientTypeToEnum(editedClient.ClientType);
+                ViewBag.ClientTypeFilter = EnumHelper.ClientTypeToEnum(editedClient.ClientType);
                 return View();
             }
         }

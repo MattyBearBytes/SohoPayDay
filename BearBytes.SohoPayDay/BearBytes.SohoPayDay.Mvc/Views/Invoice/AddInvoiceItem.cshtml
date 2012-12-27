@@ -1,0 +1,66 @@
+﻿@model BearBytes.SohoPayDay.Dto.InvoiceItemDto
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h2>Configure Invoice Item</h2>  
+</div>
+
+<div class="modal-body">
+
+@using (Html.BeginForm((string)ViewBag.Mode + "InvoiceItem", "Invoice", FormMethod.Post, new { @class = "form-horizontal", @id = "form-invoiceitem-edit" }))
+{ 
+    <fieldset>
+
+        <label class="control-label">
+            Product Selected
+        </label>
+        <div class="controls">
+            <h5>@Model.Product.ProductTypeName - @Model.Product.ProductName</h5>
+        </div>
+        <br />
+
+        <label class="control-label">
+            Quantity
+        </label>
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Quantity, new { @class = "input-mini", maxlength = '7' }) x
+            @Html.TextBoxFor(model => model.Measure, new { @class = "input-mini", maxlength = '7' })
+            @Html.DropDownListFor(model => model.UnitOfMeasure.ID, (SelectList)ViewBag.UnitsOfMeasure, new { @class = "input-mini" })
+        </div>
+        <br />
+        
+        @if (Model.Product.CanCook)
+        {
+            <label class="control-label">
+                @Html.LabelFor(model => model.Cooked)
+            </label>
+            <div class="controls">
+                @Html.CheckBoxFor(model => model.Cooked)
+                @Html.ValidationMessageFor(model => model.Cooked)
+            </div>
+            <br />
+        }
+
+
+    </fieldset>
+}
+
+<div id="alert-area"></div>
+
+</div>
+
+<div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal"><i class="icon-remove-circle" /> Cancel</a>
+    <a id="SaveInvoiceItem" href="#" class="btn btn-primary"><i class="icon-plus-sign icon-white" /> Save Invoice Item</a>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        
+        //Focus the measure field on load
+        $("#Measure").focus();
+
+    });
+
+</script>

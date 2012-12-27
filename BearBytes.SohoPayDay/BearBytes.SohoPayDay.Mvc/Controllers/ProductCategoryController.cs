@@ -31,7 +31,7 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
         {
             var records = _productService.FetchProductCategories(Id); 
             
-            ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(Id);
+            ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(Id);
             
             return View(records);
         }
@@ -43,7 +43,7 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
         /// <returns></returns>
         public ActionResult Add(int Id)
         {
-            ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(Id);
+            ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(Id);
 
             var newRecord = new ProductCategoryDto
                                 {
@@ -66,11 +66,11 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             {
                 _productService.InsertCategory(newProductCategory);
 
-                return RedirectToAction("List", new { Id = ProductHelper.ProductTypeToInt(newProductCategory.ProductType) });
+                return RedirectToAction("List", new { Id = EnumHelper.EnumTextToInt(newProductCategory.ProductType, typeof(Enums.ProductType)) });
             }
             catch
             {
-                ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(newProductCategory.ProductType);
+                ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(newProductCategory.ProductType);
                 ViewBag.FormMode = "Add";
                 return View("Edit");
             }
@@ -86,7 +86,7 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             var record = _productService.GetSingleCategory(id);
 
             ViewBag.FormMode = "Edit";
-            ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(record.ProductType);
+            ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(record.ProductType);
             
             return View(record);
         }
@@ -103,11 +103,11 @@ namespace BearBytes.SohoPayDay.Mvc.Controllers
             {
                 _productService.UpdateCategory(editedProductCategory);
 
-                return RedirectToAction("List", new { Id = ProductHelper.ProductTypeToInt(editedProductCategory.ProductType) });
+                return RedirectToAction("List", new { Id = EnumHelper.EnumTextToInt(editedProductCategory.ProductType, typeof(Enums.ProductType)) });
             }
             catch
             {
-                ViewBag.ProductTypeFilter = ProductHelper.ProductTypeToEnum(editedProductCategory.ProductType);
+                ViewBag.ProductTypeFilter = EnumHelper.ProductTypeToEnum(editedProductCategory.ProductType);
                 ViewBag.FormMode = "Edit";
                 return View();
             }

@@ -52,6 +52,8 @@
     <Compile Include="Business.cs" />
     <Compile Include="Service\BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ClientService.cs" />
+    <Compile Include="Service\Interface\IClientService.cs" />
     <Compile Include="Service\Interface\IBaseService.cs" />
     <Compile Include="Service\Interface\IProductService.cs" />
     <Compile Include="Service\ProductService.cs" />

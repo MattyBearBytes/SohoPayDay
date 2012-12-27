@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDao.cs" />
+    <Compile Include="ClientDao.cs" />
+    <Compile Include="Interfaces\IClientDao.cs" />
     <Compile Include="Interfaces\IBaseDao.cs" />
     <Compile Include="Interfaces\IProductDao.cs" />
     <Compile Include="ProductDao.cs" />

@@ -9,8 +9,23 @@ namespace BearBytes.SohoPayDay.Domain
     public class ClientDomain : BaseDomain
     {
         /// <summary>
-        /// Name of the Client
+        /// The Type of Client
         /// </summary>
-        public string Name { get; set; }
+        public string ClientType { get; set; }
+
+        /// <summary>
+        /// Business Name of the Client
+        /// </summary>
+        public string BusinessName { get; set; }
+
+        /// <summary>
+        /// First Name of the Client
+        /// </summary>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Surname of the Client
+        /// </summary>
+        public string Surname { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model BearBytes.SohoPayDay.Dto.ClientDto
 
 @{
-    ViewBag.Title = ViewBag.FormMode + " Client";
+    ViewBag.Title = String.Format("{0} {1} Client", ViewBag.FormMode, ViewBag.ClientTypeFilter);
 }
 
 <h2>@ViewBag.Title</h2>
@@ -11,31 +11,42 @@
 
     <fieldset>
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ClientType)
+        
+        @if(Model.ClientType == "Business" || Model.ClientType == "Supplier")
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BusinessName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.BusinessName)
+                @Html.ValidationMessageFor(model => model.BusinessName)
+            </div>
+        }
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
+            @Html.LabelFor(model => model.FirstName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
         </div>
-
+        
         <div class="editor-label">
-            @Html.LabelFor(model => model.AddedDate)
+            @Html.LabelFor(model => model.Surname)
         </div>
         <div class="editor-field">
-            @Html.DisplayFor(model => model.AddedDate)
+            @Html.EditorFor(model => model.Surname)
+            @Html.ValidationMessageFor(model => model.Surname)
         </div>
-
+        
+        <br/>
         <p>
-            <input type="submit" value="Save" />
+            @Html.ActionLink("Cancel", "List", "Product", new{ Id = (int)ViewBag.ClientTypeFilter }, new { @class = "btn" })
+            <input class="btn btn-primary" type="submit" value="Save" />
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

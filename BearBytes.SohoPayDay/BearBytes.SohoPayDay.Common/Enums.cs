@@ -17,5 +17,16 @@ namespace BearBytes.SohoPayDay.Common
             Service = 2,
             Labour = 3
         }
+
+        /// <summary>
+        /// The Type of Client
+        /// </summary>
+        public enum ClientType
+        {
+            All = -1,
+            Private = 1,
+            Business = 2,
+            Supplier = 3
+        }
     }
 }

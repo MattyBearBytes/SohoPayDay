@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BearBytes.SohoPayDay.Dto.ClientDto>
+
+@{
+    ViewBag.Title = ViewBag.ClientTypeFilter + " Client List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("New " + (string)ViewBag.ClientTypeFilter.ToString() + " Client", "Add", "Client", new { Id = (int)ViewBag.ClientTypeFilter }, new { @class = "btn btn-success" })
+
+</p>
+<table class="table table-condensed table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @ViewBag.ClientTypeFilter Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="Helpers\ClientHelper.cs" />
     <Compile Include="PetaPoco.cs" />
     <Compile Include="Helpers\ProductHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

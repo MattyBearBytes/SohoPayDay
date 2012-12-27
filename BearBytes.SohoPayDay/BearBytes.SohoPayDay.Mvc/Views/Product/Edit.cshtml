@@ -1,7 +1,7 @@
 ﻿@model BearBytes.SohoPayDay.Dto.ProductDto
 
 @{
-    ViewBag.Title = ViewBag.FormMode + " Product";
+    ViewBag.Title = ViewBag.FormMode + " " + Model.ProductCategory.ProductType;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -11,6 +11,15 @@
 
     <fieldset>
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ProductCategory.ProductType)
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductCategory)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ProductCategory.Id, (SelectList)ViewBag.ProductCategoryList)
+            @Html.ValidationMessageFor(model => model.ProductCategory)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
@@ -19,23 +28,14 @@
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AddedDate)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.AddedDate)
-        </div>
-
+        
+        <br/>
         <p>
-            <input type="submit" value="Save" />
+            @Html.ActionLink("Cancel", "List", "Product", new{ Id = (int)ViewBag.ProductTypeFilter }, new { @class = "btn" })
+            <input class="btn btn-primary" type="submit" value="Save" />
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -6,11 +6,17 @@ using System.Text;
 
 namespace BearBytes.SohoPayDay.Domain
 {
-    public class ServiceDomain : BaseDomain
+    public class ProductDomain : BaseDomain
     {
         /// <summary>
-        /// Name of the Service
+        /// Name of the Product
         /// </summary>
         public string Name { get; set; }
+
+
+        /// <summary>
+        /// The Product Category
+        /// </summary>
+        public ProductCategoryDomain ProductCategory { get; set; }
     }
 }

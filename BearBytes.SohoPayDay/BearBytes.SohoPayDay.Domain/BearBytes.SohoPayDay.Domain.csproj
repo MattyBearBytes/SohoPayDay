@@ -41,10 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDomain.cs" />
-    <Compile Include="ClientDto.cs" />
-    <Compile Include="ProductDto.cs" />
+    <Compile Include="ClientDomain.cs" />
+    <Compile Include="ProductCategoryDomain.cs" />
+    <Compile Include="ProductDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceDto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BearBytes.SohoPayDay.Common\BearBytes.SohoPayDay.Common.csproj">
+      <Project>{14715341-42a7-42c8-8379-16a61a558f7d}</Project>
+      <Name>BearBytes.SohoPayDay.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

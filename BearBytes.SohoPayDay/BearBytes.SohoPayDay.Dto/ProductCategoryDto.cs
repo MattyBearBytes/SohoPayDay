@@ -5,23 +5,23 @@ using System.Linq;
 using System.Text;
 using BearBytes.SohoPayDay.Common;
 
+
 namespace BearBytes.SohoPayDay.Dto
 {
-    public class ProductDto : BaseDto
+    public class ProductCategoryDto : BaseDto
     {
         /// <summary>
-        /// Name of the Product
+        /// Name of the Product Category
         /// </summary>
         [Required]
-        [Display(Name = "Product Name")]
+        [Display(Name = "Category Name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// The Product Category
+        /// The Type of Product
         /// </summary>
         [Required]
-        [Display(Name = "Category")]
-        public ProductCategoryDto ProductCategory { get; set; }
-
+        [Display(Name = "Type")]
+        public string ProductType { get; set; }
     }
 }

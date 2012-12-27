@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BearBytes.SohoPayDay.Common.Helpers;
 using BearBytes.SohoPayDay.DataAccess.Interfaces;
 using BearBytes.SohoPayDay.Domain;
 using PetaPoco;
@@ -13,9 +14,6 @@ namespace BearBytes.SohoPayDay.DataAccess
     /// </summary>
     public class ProductDao : BaseDao, IProductDao
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
         public ProductDao()
         {
             TableName = "Product";
@@ -25,19 +23,31 @@ namespace BearBytes.SohoPayDay.DataAccess
 
         #region Select Single...
 
-        /// <summary>
-        /// Get a single Product record
-        /// </summary>
-        /// <returns>ProductDomain with requested User</returns>
         public ProductDomain GetSingle(int recordId)
         {
             var sql = Sql.Builder
-                .Select(" [Product].* ")
-                .From("[Product]")
-                .Where(" [Product].ID = @0 ", recordId)
-                .Where(" [Product].DeletedDate IS NULL ");
+                .Select(" Product.*, " +
+                        " ProductCategory.*, ProductType.Name as ProductType ")
+                .From("Product")
+                .LeftJoin("ProductCategory").On("Product.CategoryId = ProductCategory.Id")
+                .LeftJoin("ProductType").On("ProductCategory.TypeId = ProductType.Id")
+                .Where(" Product.ID = @0 ", recordId)
+                .Where(" Product.DeletedDate IS NULL ");
 
-            return DataContext.Query<ProductDomain>(sql).SingleOrDefault();
+            return DataContext.Query<ProductDomain, ProductCategoryDomain>(sql).SingleOrDefault();
+
+        }
+
+        public ProductCategoryDomain GetSingleCategory(int recordId)
+        {
+            var sql = Sql.Builder
+                .Select("ProductCategory.*, ProductType.Name as ProductType ")
+                .From("ProductCategory")
+                .LeftJoin("ProductType").On("ProductCategory.TypeId = ProductType.Id")
+                .Where(" ProductCategory.ID = @0 ", recordId)
+                .Where(" ProductCategory.DeletedDate IS NULL ");
+
+            return DataContext.Query<ProductCategoryDomain>(sql).SingleOrDefault();
 
         }
 
@@ -45,18 +55,31 @@ namespace BearBytes.SohoPayDay.DataAccess
 
         #region Select Many...
 
-        /// <summary>
-        /// Fetch Product Records
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<ProductDomain> FetchMany()
+        public IEnumerable<ProductDomain> FetchMany(int productTypeId = -1, int productCategoryId = -1)
         {
             var sql = Sql.Builder
-                .Select(" [Product].* ")
+                .Select(" [Product].*, " +
+                        " ProductCategory.*, ProductType.Name as ProductType ")
                 .From("[Product]")
-                .Where(" [Product].DeletedDate IS NULL ");
+                .LeftJoin("ProductCategory").On("[Product].CategoryId = ProductCategory.Id")
+                .LeftJoin("ProductType").On("ProductCategory.TypeId = ProductType.Id")
+                .Where(" [Product].DeletedDate IS NULL ")
+                .Where(" [ProductCategory].TypeId = @0 OR @0 = -1", productTypeId)
+                .Where(" [Product].CategoryId = @0 OR @0 = -1", productCategoryId);
 
-            return DataContext.Query<ProductDomain>(sql);
+            return DataContext.Query<ProductDomain, ProductCategoryDomain>(sql);
+        }
+
+
+        public IEnumerable<ProductCategoryDomain> FetchProductCategories(int productTypeId)
+        {
+            var sql = Sql.Builder
+                .Select(" [ProductCategory].* ")
+                .From("[ProductCategory]")
+                .Where(" [ProductCategory].DeletedDate IS NULL ")
+                .Where(" [ProductCategory].TypeId = @0", productTypeId);
+
+            return DataContext.Query<ProductCategoryDomain>(sql);            
         }
 
 
@@ -64,15 +87,18 @@ namespace BearBytes.SohoPayDay.DataAccess
 
         #region Insert...
 
-        /// <summary>
-        /// Inserts a Product record into the database
-        /// </summary>
-        /// <param name="newItem">ProductDomain of new Product item</param>
-        /// <returns>The new ProductDomain containing the ID</returns>
         public void Insert(ProductDomain newItem)
         {
-            var sql = Sql.Builder.Append(" INSERT INTO Product (Name) ")
-                .Append(" VALUES (@0) ", newItem.Name);
+            var sql = Sql.Builder.Append(" INSERT INTO Product (Name, CategoryId) ")
+                .Append(" VALUES (@0, @1) ", newItem.Name, newItem.ProductCategory.Id);
+
+            DataContext.Execute(sql);
+        }
+
+        public void InsertCategory(ProductCategoryDomain newItem)
+        {
+            var sql = Sql.Builder.Append(" INSERT INTO ProductCategory (Name, TypeId) ")
+                .Append(" VALUES (@0, @1) ", newItem.Name, ProductHelper.ProductTypeToInt(newItem.ProductType));
 
             DataContext.Execute(sql);
         }
@@ -81,14 +107,19 @@ namespace BearBytes.SohoPayDay.DataAccess
 
         #region Update...
 
-        /// <summary>
-        /// Updates a Product record into the database
-        /// </summary>
-        /// <param name="editedItem">ProductDomain of updated Product</param>
         public void Update(ProductDomain editedItem)
         {
             var sql = Sql.Builder.Append("UPDATE Product ")
-                     .Append(" SET Name = @0 ", editedItem.Name)
+                     .Append(" SET Name = @0, CategoryId = @1 ", editedItem.Name, editedItem.ProductCategory.Id)
+                     .Append(" WHERE ID = @0 ", editedItem.Id);
+
+            DataContext.Execute(sql);
+        }
+
+        public void UpdateCategory(ProductCategoryDomain editedItem)
+        {
+            var sql = Sql.Builder.Append("UPDATE ProductCategory ")
+                     .Append(" SET Name = @0, TypeId = @1 ", editedItem.Name, ProductHelper.ProductTypeToInt(editedItem.ProductType))
                      .Append(" WHERE ID = @0 ", editedItem.Id);
 
             DataContext.Execute(sql);
@@ -98,13 +129,18 @@ namespace BearBytes.SohoPayDay.DataAccess
 
         #region Delete...
 
-        /// <summary>
-        /// Deletes a Product record into the database
-        /// </summary>
-        /// <param name="productId">ID of the Product to delete</param>
         public void Delete(int productId)
         {
             var sql = Sql.Builder.Append("UPDATE Product ")
+                     .Append(" SET DeletedDate = GetDate() ")
+                     .Append(" WHERE ID = @0 ", productId);
+
+            DataContext.Execute(sql);
+        }
+
+        public void DeleteCategory(int productId)
+        {
+            var sql = Sql.Builder.Append("UPDATE ProductCategory ")
                      .Append(" SET DeletedDate = GetDate() ")
                      .Append(" WHERE ID = @0 ", productId);
 

@@ -1,0 +1,30 @@
+﻿<ul class="nav" id="menu">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    
+    @if (Request.IsAuthenticated)
+    {
+        <li>@Html.ActionLink("Clients", "List", "Client")</li>
+        <li>@Html.ActionLink("Work Log", "List", "WorkLog")</li>
+        <li>@Html.ActionLink("Quotes", "List", "Quote")</li>
+        <li>@Html.ActionLink("Invoices", "List", "Invoice")</li>
+        <li>@Html.ActionLink("Expenses", "List", "Expense")</li>
+        
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+           Configure
+            <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Maintain Products", "List", "Product", new {Id = 1}, new {})</li>
+                <li>@Html.ActionLink("Product Categories", "List", "ProductCategory", new {Id = 1}, new {})</li>
+                <li class="divider"></li>
+                <li>@Html.ActionLink("Maintain Services", "List", "Product", new {Id = 2}, new {})</li>
+                <li>@Html.ActionLink("Service Categories", "List", "ProductCategory", new {Id = 2}, new {})</li>
+                <li class="divider"></li>
+                <li>@Html.ActionLink("Maintain Labour", "List", "Product", new {Id = 3}, new {})</li>
+            </ul>
+        </li>  
+    }
+    else
+    {
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+    }
+</ul>

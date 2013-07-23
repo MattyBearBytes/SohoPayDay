@@ -1,39 +1,41 @@
-﻿<ul class="nav" id="menu">
-    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-    
+﻿<ul class="nav pull-right">
+    <li class="current-page">
+        <a href="@Url.Action("Index", "Home")"><i class="icon-home"></i><br />Home</a>
+    </li>
+
     @if (Request.IsAuthenticated)
     {
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-           Clients
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Clients
             <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Private Clients", "List", "Client", new {Id = 1}, new {})</li>
-                <li>@Html.ActionLink("Business Clients", "List", "Client", new {Id = 2}, new {})</li>
-                <li>@Html.ActionLink("Suppliers", "List", "Client", new {Id = 3}, new {})</li>
+                <li>@Html.ActionLink("Private Clients", "List", "Client", new { Id = 1 }, new { })</li>
+                <li>@Html.ActionLink("Business Clients", "List", "Client", new { Id = 2 }, new { })</li>
+                <li>@Html.ActionLink("Suppliers", "List", "Client", new { Id = 3 }, new { })</li>
             </ul>
         </li>  
         
         <li>@Html.ActionLink("Work Log", "List", "WorkLog")</li>
-        <li>@Html.ActionLink("Quotes", "List", "Invoice", new {Id = 1}, new {})</li>
-        <li>@Html.ActionLink("Invoices", "List", "Invoice", new {Id = 2}, new {})</li>
+        <li>@Html.ActionLink("Quotes", "List", "Invoice", new { Id = 1 }, new { })</li>
+        <li>@Html.ActionLink("Invoices", "List", "Invoice", new { Id = 2 }, new { })</li>
         <li>@Html.ActionLink("Expenses", "List", "Expense")</li>
         
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-           Configure
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Configure
             <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Maintain Products", "List", "Product", new {Id = 1}, new {})</li>
-                <li>@Html.ActionLink("Product Categories", "List", "ProductCategory", new {Id = 1}, new {})</li>
+                <li>@Html.ActionLink("Maintain Products", "List", "Product", new { Id = 1 }, new { })</li>
+                <li>@Html.ActionLink("Product Categories", "List", "ProductCategory", new { Id = 1 }, new { })</li>
                 <li class="divider"></li>
-                <li>@Html.ActionLink("Maintain Services", "List", "Product", new {Id = 2}, new {})</li>
-                <li>@Html.ActionLink("Service Categories", "List", "ProductCategory", new {Id = 2}, new {})</li>
+                <li>@Html.ActionLink("Maintain Services", "List", "Product", new { Id = 2 }, new { })</li>
+                <li>@Html.ActionLink("Service Categories", "List", "ProductCategory", new { Id = 2 }, new { })</li>
                 <li class="divider"></li>
-                <li>@Html.ActionLink("Maintain Labour", "List", "Product", new {Id = 3}, new {})</li>
+                <li>@Html.ActionLink("Maintain Labour", "List", "Product", new { Id = 3 }, new { })</li>
             </ul>
         </li>  
     }
     else
     {
-        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>
+            <a href="@Url.Action("About", "Home")"><i class="icon-info-sign"></i><br />About</a>
+        </li>
     }
 </ul>

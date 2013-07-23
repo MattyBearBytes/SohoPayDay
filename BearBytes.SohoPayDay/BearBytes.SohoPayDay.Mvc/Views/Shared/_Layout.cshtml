@@ -1,78 +1,77 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - SOHO Pay Day</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - SOHO Pay Day</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="The Bear Bytes">
 
-        <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/bootstrap-responsive.min.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
-        
-        <script src="@Url.Content("~/Scripts/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/jquery/jquery.validate.js")" type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/jquery/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-    </head>
+    @Styles.Render("~/styles/css")
+</head>
 
-    <body>
-        <header>
-            <div class="navbar navbar-fixed-top noPrint">
-                <div class="navbar-inner">
-                    <div class="container-fluid">
+<body>
+    <header>
+        <div class="header row-fluid">
+            <div class="span12">
+                <div class="navbar">
+                    <div class="navbar-inner">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="@Url.Content("~/")">SOHO Pay Day</a>
-                        <nav>
-                            <div class="nav-collapse">
-                                @Html.Partial("_NavPartial")
-
-                                <section id="login">
-                                    @Html.Partial("_LoginPartial")
-                                </section>
-                            </div>
-                        </nav>
+                        <h1>
+                            <a class="brand" href="@Url.Action("Index", "Home")">SOHO Pay Day</a>
+                        </h1>
+                        <div class="nav-collapse collapse">
+                            @Html.Partial("_NavPartial")
+                        </div>
                     </div>
                 </div>
             </div>
-        </header>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span12">
-                    <section>
-                        @RenderBody()   
-                    </section>
-                </div>
-            </div>
-            <hr>
-            <footer class="noPrint">
-                <p>SOHO Pay Day - &copy; <a href="http://www.thebearbytes.com.au" target="_blank">The Bear Bytes</a> @DateTime.Now.Year</p>
-            </footer>
         </div>
-        
-        <div class="modal hide fade" id="theModal"></div>
+    </header>
 
-        
-        <script src="@Url.Content("~/Scripts/bootstrap/bootstrap.min.js")" type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/jquery/jquery-ui-1.8.20.min.js")" type="text/javascript"></script>
-        @RenderSection("scripts", required: false)
-        
-        <script type="text/javascript">
-            $(document).ready(function () {
-                //Modal Constructor
-                $('#theModal').modal({
-                    keyboard: true,
-                    backdrop: 'static',
-                    show: false
-                });
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                    @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="footer-border"></div>
+        <div class="row">
+            <div class="copyright span4">
+                <p>SOHO Pay Day - &copy; <a href="http://www.thebearbytes.com.au" target="_blank">The Bear Bytes</a> @DateTime.Now.Year</p>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <div class="modal hide fade" id="theModal"></div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Modal Constructor
+            $('#theModal').modal({
+                keyboard: true,
+                backdrop: 'static',
+                show: false
             });
-        </script>
-        
-        
-    </body>
+        });
+    </script>
+
+
+</body>
 </html>

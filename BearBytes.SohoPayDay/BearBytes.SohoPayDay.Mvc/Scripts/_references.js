@@ -1,4 +1,4 @@
-﻿/// <reference path="jquery/jquery-1.7.1.js" />
+﻿/// <reference path="jquery-2.0.3.js" />
 /// <reference path="jquery/jquery-ui-1.8.20.js" />
 /// <reference path="jquery/jquery.validate.js" />
 /// <reference path="jquery/jquery.validate.unobtrusive.js" />

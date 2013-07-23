@@ -1,21 +1,30 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Welcome";
 }
 
-<h3>This is how it's done...</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Track Your Clients</h5>
-        Hold their contact details, quotes, invoices, and what has been paid.
-    </li>
-
-    <li class="two">
-        <h5>Track Your Hours</h5>
-        The work log allows you to keep track of hours spend on a client project.  All this can easily be invoiced.
-    </li>
-
-    <li class="three">
-        <h5>Track Your Expenses</h5>
-        A simplistic way to record of your expenses and those expenses on behalf of clients.
-    </li>
-</ol>
+<div id="myCarousel" class="carousel slide center" style="width: 960px;">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+    </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Content/img/slider01.png" />
+            <div class="carousel-caption">
+                <h4>Pocket Tradie can do all the hard work for you</h4>
+                <p>More time to be a perfectionist on the job and more time to relax away from it.</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/Content/img/slider01.png" />
+            <div class="carousel-caption">
+                <h4>This isn't done yet</h4>
+                <p>Add more photos.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
